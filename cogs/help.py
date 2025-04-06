@@ -21,34 +21,28 @@ class Help(commands.Cog):
             color=discord.Color.purple()
         )
 
-        # Categorías de comandos
-        embed.add_field(
-            name="🎭 **Comandos Divertidos**",
-            value=(
-                "`gay [@usuario]` - Calcula qué tan gay es un usuario con un porcentaje aleatorio. 🌈\n\n"
-                "`feo [@usuario]` - Calcula qué tan feo es un usuario con un porcentaje aleatorio. 🤡\n\n"
-                "`borracho [@usuario]` - Calcula qué tan borracho está un usuario con un porcentaje aleatorio. 🍻\n\n"
-                "`muerte [@usuario]` - Genera una manera graciosa de morir para un usuario. 💀"
-            ),
-            inline=False
+        # Comandos Divertidos (en línea)
+        comandos_divertidos = (
+            "`gay [@usuario]` - 🌈 | "
+            "`feo [@usuario]` - 🤡 | "
+            "`borracho [@usuario]` - 🍻 | "
+            "`muerte [@usuario]` - 💀 | "
+            "`pelea [@usuario1] [@usuario2]` - 🥊"  # Agregado wk.pelea
         )
+        embed.add_field(name="🎭 **Comandos Divertidos**", value=comandos_divertidos, inline=False)
 
-        embed.add_field(
-            name="📋 **Comandos de Información**",
-            value=(
-                "`perfil [@usuario]` - Muestra el perfil de un usuario, incluyendo su nombre en SK, cumpleaños y más. 🧑‍💻\n\n"
-                "`help` - Muestra esta lista de comandos y sus descripciones. ❓"
-            ),
-            inline=False
+        # Comandos de Información (en línea)
+        comandos_info = (
+            "`perfil [@usuario]` - 🧑‍💻 | "
+            "`help` - ❓"
         )
+        embed.add_field(name="📋 **Comandos de Información**", value=comandos_info, inline=False)
 
-        embed.add_field(
-            name="📩 **Comandos de Mensajes**",
-            value=(
-                "`anonimo <mensaje>` - Permite enviar un mensaje anónimo al canal. 📩"
-            ),
-            inline=False
+        # Comandos de Mensajes (en línea)
+        comandos_mensajes = (
+            "`anonimo <mensaje>` - 📩"
         )
+        embed.add_field(name="📩 **Comandos de Mensajes**", value=comandos_mensajes, inline=False)
 
         # Pie de página y diseño adicional
         embed.set_thumbnail(url=self.bot.user.avatar.url if self.bot.user.avatar else "")
