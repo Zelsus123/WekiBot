@@ -56,13 +56,46 @@ class Muerte(commands.Cog):
             f"Fue aplastado por un piano que {otro_miembro.mention} dejó caer desde un edificio." if otro_miembro else "Fue aplastado por un piano que cayó del cielo.",
             f"Murió de risa después de escuchar un chiste malo de {otro_miembro.mention}." if otro_miembro else "Murió de risa después de escuchar un chiste muy malo.",
             f"Se quedó atrapado en una pelea de almohadas con {otro_miembro.mention} y nunca salió con vida." if otro_miembro else "Murió en una épica pelea de almohadas."
+            "Murió por aplastamiento accidental con una colección excesiva de juguetes sexuales.",
+            f"Murió asfixiado por una peluca mal colocada durante un juego de roles con {otro_miembro.mention}.",
+            "Murió por un resbalón fatal en un charco de lubricante de sabor exótico.",
+            "Murió de un paro cardíaco causado por una electrocución leve de un vibrador defectuoso en la ducha.",
+            f"Murió tras intentar impresionar a {otro_miembro.mention} con una contorsión sexual y quedarse atascado en el sofá hasta morir de vergüenza.",
+            f"Murió al resbalar con el lubricante que {otro_miembro.mention} dejó en el suelo mientras huía desnudo/a del cartero y morir de hipotermia.",
+            f"Murió tras confundir la crema depilatoria de {otro_miembro.mention} con lubricante y su intento de 'depilación íntima extrema' resultar fatal.",
+            f"Murió al intentar usar la lencería de {otro_miembro.mention} como paracaídas al caer de la cama y, bueno, no funcionar.",
+            f"Murió de un ataque de risa tan fuerte al ver a {otro_miembro.mention} intentar un baile sensual que su corazón simplemente dijo 'basta'.",
+            f"Murió al intentar sorprender a {otro_miembro.mention} con un striptease improvisado usando solo calcetines y tropezar, golpeándose la cabeza con una lámpara de lava.",
+            f"Murió electrocutado cómicamente al usar accidentalmente el vibrador de {otro_miembro.mention} para batir huevos para un desayuno 'íntimo'.",
+            f"Murió tras intentar preparar una cena 'afrodisíaca' siguiendo un tutorial de YouTube de {otro_miembro.mention} y la explosión de la cocina ser inesperada.",
+            f"Murió sofocado bajo el glaseado tras esconderse en un pastel gigante para sorprender a {otro_miembro.mention} en su cumpleaños 'picante'.",
+            f"Murió al intentar imitar una pose sexual de una estatua griega que {otro_miembro.mention} admiraba y romperse tantas cosas que la ambulancia no llegar a tiempo.",
+            f"Murió tras beber accidentalmente la 'poción del amor' que {otro_miembro.mention} había preparado (era lejía con colorante rojo).",
+            f"Murió al intentar usar el cinturón de castidad de broma de {otro_miembro.mention} y la cerradura atascarse... permanentemente.",
+            f"Murió electrocutado al intentar cargar su juguete sexual con el mismo cargador de su tostadora mientras tomaba un baño 'relajante'.",
+            f"Murió de un susto mortal tras intentar hacerle una broma sexual a {otro_miembro.mention} con un globo con forma fálica que explotó justo en su cara.",
+            f"Murió atragantado con una cereza al intentar una pose 'tonta pero sexy' que {otro_miembro.mention} le había descrito.",
+            f"Murió al caer por un hueco inesperado en el suelo tras intentar usar el antifaz de encaje de {otro_miembro.mention} para vendarse los ojos.",
+            f"Murió tras tener una reacción alérgica al 'aceite de pasión con aroma a unicornio' que {otro_miembro.mention} compró en una tienda dudosa.",
+            f"Murió al apuñalarse accidentalmente en el pie (la infección fue terrible) tras intentar abrir una botella de champán con una espada para impresionar a {otro_miembro.mention}.",
+            f"Murió tras quedarse dormido/a en una posición tan ridícula después de una noche de 'diversión' con {otro_miembro.mention} que su cuerpo simplemente se rindió.",
+            f"Murió atacado/a por una ardilla territorial tras intentar usar el disfraz de 'plátano gigante sexy' que {otro_miembro.mention} había olvidado."
         ]
 
         # Elegir una manera aleatoria
         manera = random.choice(maneras)
 
-        # Enviar el resultado
-        await ctx.send(f"💀 {miembro.mention} murió de la siguiente manera: **{manera}**")
+        # Crear un embed para el mensaje
+        embed = discord.Embed(
+            title="💀 Muerte Épica 💀",
+            description=f"{miembro.mention} murió de la siguiente manera:\n**{manera}**",
+            color=discord.Color.red()
+        )
+        embed.set_footer(text="¡Qué tragedia tan graciosa!")
+        embed.set_thumbnail(url="https://i.imgur.com/3ZQ3ZKq.png")  # Puedes cambiar esta URL por otra imagen
+
+        # Enviar el embed
+        await ctx.send(embed=embed)
 
 async def setup(bot):
     await bot.add_cog(Muerte(bot))

@@ -27,8 +27,17 @@ class Feo(commands.Cog):
         else:
             comentario = "💀 ¡Felicidades! Has alcanzado el nivel máximo de fealdad."
 
-        # Enviar el resultado
-        await ctx.send(f"🤡 {miembro.mention} es un **{porcentaje}% feo**. {comentario}")
+        # Crear un embed para el mensaje
+        embed = discord.Embed(
+            title="🤡 Medidor de Fealdad 🤡",
+            description=f"{miembro.mention} es un **{porcentaje}% feo**.\n{comentario}",
+            color=discord.Color.orange()
+        )
+        embed.set_footer(text="¡La belleza está en el interior! 🌟")
+        embed.set_thumbnail(url="https://i.imgur.com/3ZQ3ZKq.png")  # Cambia esta URL si deseas otra imagen
+
+        # Enviar el embed
+        await ctx.send(embed=embed)
 
 async def setup(bot):
     await bot.add_cog(Feo(bot))

@@ -27,8 +27,17 @@ class Gay(commands.Cog):
         else:
             comentario = "🌈👑 ¡Eres el rey/reina del arcoíris! ¡Felicidades!"
 
-        # Enviar el resultado
-        await ctx.send(f"🏳️‍🌈 {miembro.mention} es un **{porcentaje}% gay**. {comentario}")
+        # Crear un embed para el mensaje
+        embed = discord.Embed(
+            title="🏳️‍🌈 Medidor de Gay 🏳️‍🌈",
+            description=f"{miembro.mention} es un **{porcentaje}% gay**.\n{comentario}",
+            color=discord.Color.magenta()
+        )
+        embed.set_footer(text="¡El amor es amor! 🌈")
+        embed.set_thumbnail(url="https://i.imgur.com/3ZQ3ZKq.png")  # Cambia esta URL si deseas otra imagen
+
+        # Enviar el embed
+        await ctx.send(embed=embed)
 
 async def setup(bot):
     await bot.add_cog(Gay(bot))

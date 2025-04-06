@@ -9,7 +9,7 @@ class Borracho(commands.Cog):
     @commands.command(name="borracho", aliases=["wk.borracho"])
     async def borracho(self, ctx, miembro: discord.Member = None):
         """Calcula qué tan borracho está un usuario."""
-        await ctx.message.delete() # Elimina el mensaje del comando
+        await ctx.message.delete()  # Elimina el mensaje del comando
         miembro = miembro or ctx.author
         porcentaje = random.randint(0, 100)
        
@@ -27,8 +27,17 @@ class Borracho(commands.Cog):
         else:
             comentario = "💀 ¡Estás tan borracho que ni recuerdas tu nombre! Llama a un taxi."
 
-        # Enviar el resultado
-        await ctx.send(f"🍻 {miembro.mention} está un **{porcentaje}% borracho**. {comentario}")
+        # Crear un embed para el mensaje
+        embed = discord.Embed(
+            title="🍻 Medidor de Borrachera 🍻",
+            description=f"{miembro.mention} está un **{porcentaje}% borracho**.\n{comentario}",
+            color=discord.Color.gold()
+        )
+        embed.set_footer(text="¡Bebe con responsabilidad! 🚖")
+        embed.set_thumbnail(url="https://i.imgur.com/3ZQ3ZKq.png")  # Cambia esta URL si deseas otra imagen
+
+        # Enviar el embed
+        await ctx.send(embed=embed)
 
 async def setup(bot):
     await bot.add_cog(Borracho(bot))
