@@ -94,23 +94,53 @@ class Verificacion(commands.Cog):
                         try: 
                             new_role = await message.guild.create_role(name=usuario_sk, color=color)
                             await message.author.add_roles(new_role)
+
+                            # Verificar si el rol "Verificado" existe, si no, crearlo
+                            rol_verificado = discord.utils.get(message.guild.roles, name="Verificado")
+                            if not rol_verificado:
+                                rol_verificado = await message.guild.create_role(name="Verificado", color=discord.Color.green())
                             
-                            # Cambiar el apodo del usuario
-                            try:
-                                await message.author.edit(nick=usuario_sk)
-                                await message.author.send(f"¡Has sido verificado! Tu rol es: {usuario_sk}, tu apodo ha sido actualizado y tu color favorito ha sido aplicado.")
-                            except discord.Forbidden:
-                                await message.author.send("No tengo permiso para cambiar tu apodo.")
-                            except discord.HTTPException as e:
-                                await message.author.send(f"No se pudo cambiar el apodo: {e}")
-                                print(f"No se pudo cambiar el apodo: {e}")
+                            # Asignar el rol "Verificado" al usuario
+                            await message.author.add_roles(rol_verificado)
+
+                            # Otorgar permisos de ver los demás canales
+                            for channel in message.guild.channels:
+                                try:
+                                    # Si el canal es de bienvenida o verificación, denegar el permiso de verlo
+                                    if channel.id in [self.canal_bienvenida_id, self.canal_verificacion_id]:
+                                        await channel.set_permissions(new_role, view_channel=False)
+                                    else:
+                                        # Permitir ver otros canales
+                                        await channel.set_permissions(new_role, view_channel=True)
+                                except discord.Forbidden:
+                                    print(f"No se pudieron establecer permisos en el canal {channel.name} para el rol {new_role.name}.")
+                                except discord.HTTPException as e:
+                                    print(f"Error al establecer permisos en el canal {channel.name}: {e}")
+
                         except discord.Forbidden:
                             await message.author.send("No tengo permiso para crear roles.")
                         except discord.HTTPException as e:
                             await message.author.send(f"No se pudo crear el rol: {e}")
                             print(f"No se pudo crear el rol: {e}")
-                            
-                        # Guardar la información en la db
+                        
+                        # Intentar cambiar el apodo del usuario
+                        apodo_cambiado = False
+                        try:
+                            await message.author.edit(nick=usuario_sk)
+                            apodo_cambiado = True
+                        except discord.Forbidden:
+                            await message.author.send("No tengo permiso para cambiar tu apodo porque eres administrador.")
+                        except discord.HTTPException as e:
+                            await message.author.send(f"No se pudo cambiar el apodo: {e}")
+                            print(f"No se pudo cambiar el apodo: {e}")
+                        
+                        # Enviar mensaje de verificación exitosa
+                        if apodo_cambiado:
+                            await message.author.send(f"¡Has sido verificado! Tu rol es: {usuario_sk}, tu apodo ha sido actualizado y tu color favorito ha sido aplicado.")
+                        else:
+                            await message.author.send(f"¡Has sido verificado! Tu rol es: {usuario_sk}. Sin embargo, no se pudo cambiar tu apodo porque no tengo los permisos necesarios.")
+                        
+                        # Guardar la información en la base de datos
                         verificadoData = {
                             "sk_user": usuario_sk,
                             "birthday": fecha_nacimiento,
