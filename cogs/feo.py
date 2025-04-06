@@ -34,7 +34,7 @@ class Feo(commands.Cog):
             color=discord.Color.orange()
         )
         embed.set_footer(text="¡La belleza está en el interior! 🌟")
-        embed.set_thumbnail(url="https://i.imgur.com/3ZQ3ZKq.png")  # Cambia esta URL si deseas otra imagen
+        embed.set_thumbnail(url="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGU3ZXdsaWh1bHlxODltZ251ZG85aXllczBkbzk4aTViY3F6cHJmOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xkZ9ZAfdaKces/giphy.gif")  # Cambia esta URL si deseas otra imagen
 
         # Enviar el embed
         await ctx.send(embed=embed)

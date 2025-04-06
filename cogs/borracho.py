@@ -34,7 +34,7 @@ class Borracho(commands.Cog):
             color=discord.Color.gold()
         )
         embed.set_footer(text="¡Bebe con responsabilidad! 🚖")
-        embed.set_thumbnail(url="https://i.imgur.com/3ZQ3ZKq.png")  # Cambia esta URL si deseas otra imagen
+        embed.set_thumbnail(url="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmlydzB0bjcwam41YXdrMThuZ3Mwcm9haXluMmt5ZjNoeHgxYXV4ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KctNhiy99LoLBTgLNO/giphy.gif")  # Cambia esta URL si deseas otra imagen
 
         # Enviar el embed
         await ctx.send(embed=embed)

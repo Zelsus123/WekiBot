@@ -92,7 +92,7 @@ class Muerte(commands.Cog):
             color=discord.Color.red()
         )
         embed.set_footer(text="¡Qué tragedia tan graciosa!")
-        embed.set_thumbnail(url="https://i.imgur.com/3ZQ3ZKq.png")  # Puedes cambiar esta URL por otra imagen
+        embed.set_thumbnail(url="https://media.giphy.com/media/B313NwxrHpzUs/giphy.gif?cid=790b76114gg13s3aw98a6x2p72hlxduc0cgam958v2gelz9h&ep=v1_gifs_search&rid=giphy.gif&ct=g")  # Puedes cambiar esta URL por otra imagen
 
         # Enviar el embed
         await ctx.send(embed=embed)

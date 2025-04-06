@@ -34,7 +34,7 @@ class Gay(commands.Cog):
             color=discord.Color.magenta()
         )
         embed.set_footer(text="¡El amor es amor! 🌈")
-        embed.set_thumbnail(url="https://i.imgur.com/3ZQ3ZKq.png")  # Cambia esta URL si deseas otra imagen
+        embed.set_thumbnail(url="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExczJxM2tycjNieHZxcnZjOWd0eXkxdmhsM3B5MGR4bGI4OWZiOHUxMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/BpnkuY1i2rBpm/giphy.gif")  # Cambia esta URL si deseas otra imagen
 
         # Enviar el embed
         await ctx.send(embed=embed)

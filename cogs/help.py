@@ -13,7 +13,11 @@ class Help(commands.Cog):
 
         embed = discord.Embed(
             title="📜 **Lista de Comandos de WekiBot**",
-            description="¡Bienvenido a la guía de comandos! Aquí encontrarás todo lo que puedes hacer con este bot. Usa los comandos como se indica para disfrutar de todas las funciones. 🌟",
+            description=(
+                "¡Bienvenido a la guía de comandos! Aquí encontrarás todo lo que puedes hacer con este bot. "
+                "Usa los comandos como se indica para disfrutar de todas las funciones. 🌟\n\n"
+                "```fix\nPrefijo: wk.\n```"
+            ),
             color=discord.Color.purple()
         )
 
@@ -21,10 +25,10 @@ class Help(commands.Cog):
         embed.add_field(
             name="🎭 **Comandos Divertidos**",
             value=(
-                "`wk.gay [@usuario]` - Calcula qué tan gay es un usuario con un porcentaje aleatorio. 🌈\n"
-                "`wk.feo [@usuario]` - Calcula qué tan feo es un usuario con un porcentaje aleatorio. 🤡\n"
-                "`wk.borracho [@usuario]` - Calcula qué tan borracho está un usuario con un porcentaje aleatorio. 🍻\n"
-                "`wk.muerte [@usuario]` - Genera una manera graciosa de morir para un usuario. 💀"
+                "`gay [@usuario]` - Calcula qué tan gay es un usuario con un porcentaje aleatorio. 🌈\n\n"
+                "`feo [@usuario]` - Calcula qué tan feo es un usuario con un porcentaje aleatorio. 🤡\n\n"
+                "`borracho [@usuario]` - Calcula qué tan borracho está un usuario con un porcentaje aleatorio. 🍻\n\n"
+                "`muerte [@usuario]` - Genera una manera graciosa de morir para un usuario. 💀"
             ),
             inline=False
         )
@@ -32,8 +36,16 @@ class Help(commands.Cog):
         embed.add_field(
             name="📋 **Comandos de Información**",
             value=(
-                "`wk.perfil [@usuario]` - Muestra el perfil de un usuario, incluyendo su nombre en SK, cumpleaños y más. 🧑‍💻\n"
-                "`wk.help` - Muestra esta lista de comandos y sus descripciones. ❓"
+                "`perfil [@usuario]` - Muestra el perfil de un usuario, incluyendo su nombre en SK, cumpleaños y más. 🧑‍💻\n\n"
+                "`help` - Muestra esta lista de comandos y sus descripciones. ❓"
+            ),
+            inline=False
+        )
+
+        embed.add_field(
+            name="📩 **Comandos de Mensajes**",
+            value=(
+                "`anonimo <mensaje>` - Permite enviar un mensaje anónimo al canal. 📩"
             ),
             inline=False
         )
