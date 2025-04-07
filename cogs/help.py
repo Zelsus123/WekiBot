@@ -28,7 +28,8 @@ class Help(commands.Cog):
             "`borracho [@usuario]` - 🍻 | "
             "`muerte [@usuario]` - 💀 | "
             "`pelea [@usuario1] [@usuario2]` - 🥊 | "
-            "`banana [@usuario]` - 🍌"  # Agregado wk.banana
+            "`banana [@usuario]` - 🍌 | "
+            "`ship [@usuario]` - 💖"  # Agregado wk.ship
         )
         embed.add_field(name="🎭 **Comandos Divertidos**", value=comandos_divertidos, inline=False)
 
