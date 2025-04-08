@@ -31,7 +31,8 @@ class Help(commands.Cog):
             "`banana [@usuario]` - 🍌 | "
             "`ship [@usuario]` - 💖 | "
             "`chiste` - 😂 | "
-            "`besar [@usuario]` - 💋"
+            "`besar [@usuario]` - 💋 | "
+            "`arresto [@usuario]` - 🚨"  # Agregado el comando arresto
         )
         embed.add_field(name="🎭 **Comandos Divertidos**", value=comandos_divertidos, inline=False)
 
