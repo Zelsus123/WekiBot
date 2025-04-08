@@ -4,6 +4,7 @@ from pymongo import MongoClient
 import os
 import random
 from dotenv import load_dotenv
+import uuid  # Importa la librería para generar UUIDs
 
 load_dotenv()
 
@@ -100,22 +101,25 @@ class Besar(commands.Cog):
 
     def actualizar_base_de_datos(self, usuario1_id, usuario2_id):
         """Actualiza la base de datos con la información del beso."""
-        # Crear un identificador único combinando los IDs de los usuarios (ordenados para evitar duplicados)
+
+        # Ordena los IDs de los usuarios para que el orden no importe al buscar
         id_pareja = tuple(sorted((usuario1_id, usuario2_id)))
-        
-        # Buscar si ya existe la pareja en la base de datos
-        pareja = self.besos_collection.find_one({"_id": id_pareja})
-        
+
+        # Buscar si ya existe la pareja en la base de datos por los IDs de usuario
+        pareja = self.besos_collection.find_one({"usuario1": id_pareja[0], "usuario2": id_pareja[1]})
+
         if pareja:
             # Si existe, incrementar el contador de besos
-            self.besos_collection.update_one({"_id": id_pareja}, {"$inc": {"besos": 1}})
+            self.besos_collection.update_one(
+                {"usuario1": id_pareja[0], "usuario2": id_pareja[1]},
+                {"$inc": {"besos": 1}}
+            )
             print(f"Beso registrado entre {usuario1_id} y {usuario2_id}. Total besos: {pareja['besos'] + 1}")
         else:
             # Si no existe, crear una nueva entrada
             nueva_pareja = {
-                "_id": id_pareja,
-                "usuario1": usuario1_id,
-                "usuario2": usuario2_id,
+                "usuario1": id_pareja[0],
+                "usuario2": id_pareja[1],
                 "besos": 1
             }
             self.besos_collection.insert_one(nueva_pareja)
