@@ -31,14 +31,15 @@ class Help(commands.Cog):
             "`banana [@usuario]` - 🍌 | "
             "`ship [@usuario]` - 💖 | "
             "`chiste` - 😂 | "
-            "`besar [@usuario]` - 💋"  # Agregado el comando besar
+            "`besar [@usuario]` - 💋"
         )
         embed.add_field(name="🎭 **Comandos Divertidos**", value=comandos_divertidos, inline=False)
 
         # Comandos de Información (en línea)
         comandos_info = (
             "`perfil [@usuario]` - 🧑‍💻 | "
-            "`help` - ❓"
+            "`help` - ❓ | "
+            "`besos` - 🏆"  # Agregado el comando besos
         )
         embed.add_field(name="📋 **Comandos de Información**", value=comandos_info, inline=False)
 
