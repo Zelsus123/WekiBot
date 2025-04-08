@@ -23,6 +23,10 @@ class TopBesos(commands.Cog):
     @commands.command(name="besos", aliases=["wk.besos"])
     async def topbesos(self, ctx):
         """Muestra el top 5 de parejas que más se han besado."""
+
+        # Eliminar el mensaje del comando
+        await ctx.message.delete()
+
         # Obtener las 5 parejas con más besos
         top_parejas = self.besos_collection.find().sort("besos", -1).limit(5)
 
