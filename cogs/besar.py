@@ -136,11 +136,11 @@ class Besar(commands.Cog):
             for attachment in message.attachments:
                 if attachment.url.endswith((".gif", ".png", ".jpg", ".jpeg")):
                     # Guardar el GIF en la base de datos de GIFs de aceptar
-                    await self.gifs_aceptar_collection.insert_one({"url": attachment.url})
+                    self.gifs_aceptar_collection.insert_one({"url": attachment.url})
                     self.gifs_aceptar.append(attachment.url)  # Actualizar la lista en memoria
                     print(f"GIF de aceptar guardado: {attachment.url}")
             if message.content.endswith((".gif", ".png", ".jpg", ".jpeg")):
-                await self.gifs_aceptar_collection.insert_one({"url": message.content})
+                self.gifs_aceptar_collection.insert_one({"url": message.content})
                 self.gifs_aceptar.append(message.content)
                 print(f"GIF de aceptar guardado: {message.content}")
             self.cargar_gifs()
@@ -149,11 +149,11 @@ class Besar(commands.Cog):
             for attachment in message.attachments:
                 if attachment.url.endswith((".gif", ".png", ".jpg", ".jpeg")):
                     # Guardar el GIF en la base de datos de GIFs de rechazar
-                    await self.gifs_rechazar_collection.insert_one({"url": attachment.url})
+                    self.gifs_rechazar_collection.insert_one({"url": attachment.url})
                     self.gifs_rechazar.append(attachment.url)  # Actualizar la lista en memoria
                     print(f"GIF de rechazar guardado: {attachment.url}")
             if message.content.endswith((".gif", ".png", ".jpg", ".jpeg")):
-                await self.gifs_rechazar_collection.insert_one({"url": message.content})
+                self.gifs_rechazar_collection.insert_one({"url": message.content})
                 self.gifs_rechazar.append(message.content)
                 print(f"GIF de rechazar guardado: {message.content}")
             self.cargar_gifs()
