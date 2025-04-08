@@ -30,7 +30,8 @@ class Help(commands.Cog):
             "`pelea [@usuario1] [@usuario2]` - 🥊 | "
             "`banana [@usuario]` - 🍌 | "
             "`ship [@usuario]` - 💖 | "
-            "`chiste` - 😂"
+            "`chiste` - 😂 | "
+            "`besar [@usuario]` - 💋"  # Agregado el comando besar
         )
         embed.add_field(name="🎭 **Comandos Divertidos**", value=comandos_divertidos, inline=False)
 
