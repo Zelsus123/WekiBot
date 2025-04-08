@@ -42,6 +42,9 @@ class Besar(commands.Cog):
             await ctx.send("¡No puedes besarte a ti mismo!")
             return
 
+        # Eliminar el mensaje del comando
+        await ctx.message.delete()
+
         embed = discord.Embed(
             title="💋 ¡Petición de Beso! 💋",
             description=f"{ctx.author.mention} te está pidiendo un beso, {miembro.mention}. ¿Aceptas?",
@@ -129,25 +132,27 @@ class Besar(commands.Cog):
             for attachment in message.attachments:
                 if attachment.url.endswith((".gif", ".png", ".jpg", ".jpeg")):
                     # Guardar el GIF en la base de datos de GIFs de aceptar
-                    self.gifs_aceptar_collection.insert_one({"url": attachment.url})
+                    await self.gifs_aceptar_collection.insert_one({"url": attachment.url})
                     self.gifs_aceptar.append(attachment.url)  # Actualizar la lista en memoria
                     print(f"GIF de aceptar guardado: {attachment.url}")
             if message.content.endswith((".gif", ".png", ".jpg", ".jpeg")):
-                self.gifs_aceptar_collection.insert_one({"url": message.content})
+                await self.gifs_aceptar_collection.insert_one({"url": message.content})
                 self.gifs_aceptar.append(message.content)
                 print(f"GIF de aceptar guardado: {message.content}")
+            self.cargar_gifs()
 
         if message.channel.id == ID_CANAL_RECHAZAR:
             for attachment in message.attachments:
                 if attachment.url.endswith((".gif", ".png", ".jpg", ".jpeg")):
                     # Guardar el GIF en la base de datos de GIFs de rechazar
-                    self.gifs_rechazar_collection.insert_one({"url": attachment.url})
+                    await self.gifs_rechazar_collection.insert_one({"url": attachment.url})
                     self.gifs_rechazar.append(attachment.url)  # Actualizar la lista en memoria
                     print(f"GIF de rechazar guardado: {attachment.url}")
             if message.content.endswith((".gif", ".png", ".jpg", ".jpeg")):
-                self.gifs_rechazar_collection.insert_one({"url": message.content})
+                await self.gifs_rechazar_collection.insert_one({"url": message.content})
                 self.gifs_rechazar.append(message.content)
                 print(f"GIF de rechazar guardado: {message.content}")
+            self.cargar_gifs()
 
 async def setup(bot):
     await bot.add_cog(Besar(bot))
